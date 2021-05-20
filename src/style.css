@@ -215,8 +215,9 @@ img {
 }
 #forecast-days,
 #forecast {
-  padding: 20px;
+  padding: 35px;
   font-size: 14px;
+  background-color: #fff;
 }
 .forecast-icon {
   margin: 0;
@@ -225,7 +226,7 @@ img {
   background: #fff;
   color: #212025;
   text-align: center;
-  padding: 35px 20px 0 20px;
+  padding: 50px 20px 0 20px;
   border-radius: 0 0 12px 12px;
   margin: 0 auto;
   max-width: 800px;
@@ -325,4 +326,8 @@ footer {
 
 h2 {
   text-transform: capitalize;
+}
+#three-and-five {
+  margin-bottom: 30px;
+  border: 20px;
 }
