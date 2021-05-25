@@ -123,9 +123,8 @@ hr {
   margin: 0;
   width: 100px;
 }
-#main-temp {
-  font-size: 60px;
-  text-align: left;
+#mainTemp {
+  align-items: top;
   margin: 0;
   padding: 0;
 }
@@ -162,6 +161,7 @@ img {
 }
 #displayed-temp {
   margin-right: 14px;
+  font-size: 90px;
 }
 #change-to-F,
 #change-to-C {
