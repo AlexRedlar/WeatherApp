@@ -130,3 +130,5 @@ let locationButton = document.querySelector("#location-button");
 locationButton.addEventListener("click", getCurrentLocStat);
 
 let celsiusTemp = null;
+
+searchCity("London");
