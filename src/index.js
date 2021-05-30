@@ -64,6 +64,8 @@ currentDate();
 function convertToCelsius(event) {
   event.preventDefault();
   let temperatureC = document.querySelector("#displayed-temp");
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
   temperatureC.innerHTML = Math.round(celsiusTemp);
 }
 
@@ -73,6 +75,8 @@ celsiusLink.addEventListener("click", convertToCelsius);
 function convertToFahrenheit(event) {
   event.preventDefault();
   let temperatureF = document.querySelector("#displayed-temp");
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
   let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
   temperatureF.innerHTML = Math.round(fahrenheitTemp);
 }

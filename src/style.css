@@ -171,17 +171,11 @@ img {
   top: -26px;
   text-decoration: none;
   color: #fff;
-  background-color: #05e0e9;
   transition-duration: 200ms;
   border-radius: 30px;
 }
 #change-to-C {
   padding: 2px 5px;
-}
-#change-to-F:hover,
-#change-to-C:hover {
-  background-color: #ff2768;
-  box-shadow: 1px 1px 12px 0 rgb(94, 78, 88, 0.3);
 }
 
 #lower-hr hr {
@@ -330,4 +324,8 @@ h2 {
 #three-and-five {
   margin-bottom: 30px;
   border: 20px;
+}
+.active {
+  background-color: #ff2768;
+  cursor: default;
 }
