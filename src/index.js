@@ -64,7 +64,7 @@ currentDate();
 function convertToCelsius(event) {
   event.preventDefault();
   let temperatureC = document.querySelector("#displayed-temp");
-  temperatureC.innerHTML = "5";
+  temperatureC.innerHTML = Math.round(celsiusTemp);
 }
 
 let celsiusLink = document.querySelector("#change-to-C");
