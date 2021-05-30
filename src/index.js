@@ -100,6 +100,11 @@ function showWeather(response) {
   windValue.innerHTML = Math.round(response.data.wind.speed);
   let pressure = document.querySelector("#pressure-value");
   pressure.innerHTML = response.data.main.pressure;
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute(
+    "src",
+    `images/icons/${response.data.weather[0].icon}.svg`
+  );
 }
 
 function searchLocation(position) {
