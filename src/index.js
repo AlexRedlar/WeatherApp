@@ -73,7 +73,8 @@ celsiusLink.addEventListener("click", convertToCelsius);
 function convertToFahrenheit(event) {
   event.preventDefault();
   let temperatureF = document.querySelector("#displayed-temp");
-  temperatureF.innerHTML = "41";
+  let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
+  temperatureF.innerHTML = Math.round(fahrenheitTemp);
 }
 
 let fahrenheitLink = document.querySelector("#change-to-F");
@@ -88,6 +89,8 @@ function searchCity(city) {
 }
 
 function showWeather(response) {
+  celsiusTemp = response.data.main.temp;
+
   let searchCity = document.querySelector("#city");
   searchCity.innerHTML = response.data.name;
   let searchTemp = document.querySelector("#displayed-temp");
@@ -121,3 +124,5 @@ function getCurrentLocStat(event) {
 
 let locationButton = document.querySelector("#location-button");
 locationButton.addEventListener("click", getCurrentLocStat);
+
+let celsiusTemp = null;
