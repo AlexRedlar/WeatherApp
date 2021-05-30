@@ -318,7 +318,7 @@ footer {
 #lower-hr hr {
   max-width: 250px;
 }
-#currentWeather {
+#icon {
   display: block;
   margin: 0 auto;
   height: 300px;
