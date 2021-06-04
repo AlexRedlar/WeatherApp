@@ -59,6 +59,33 @@ function currentDate() {
 
 currentDate();
 
+//5 day forcast
+function displayForcast5Day() {
+  let forcastElement = document.querySelector("#forecast-days");
+
+  let forcastHTML = `<div class="row">`;
+  let days = ["Fri", "Sat", "Sun", "Mon", "Tues"];
+  days.forEach(function (day) {
+    forcastHTML =
+      forcastHTML +
+      `
+	  <div class="col">
+		<h5 class="day+1">
+              ${day}
+              <br />
+              <span id="day+1">
+				  <img src="images/sunCloudRain.svg" alt="">
+				  5°C
+			  </span>
+            </h5>
+            </div>
+    `;
+  });
+
+  forcastHTML = forcastHTML + `</div>`;
+  forcastElement.innerHTML = forcastHTML;
+}
+
 //convert temp
 
 function convertToCelsius(event) {
@@ -132,3 +159,4 @@ locationButton.addEventListener("click", getCurrentLocStat);
 let celsiusTemp = null;
 
 searchCity("London");
+displayForcast5Day();
