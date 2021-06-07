@@ -60,7 +60,8 @@ function currentDate() {
 currentDate();
 
 //5 day forcast
-function displayForcast5Day() {
+function displayForcast5Day(response) {
+  console.log(response.data);
   let forcastElement = document.querySelector("#forecast-days");
 
   let forcastHTML = `<div class="row">`;
@@ -119,6 +120,14 @@ function searchCity(city) {
   axios.get(apiUrl).then(showWeather);
 }
 
+function getForcast(coordinates) {
+  console.log(coordinates);
+  let apiKey = `17e48d0a69e4a55c080a86ff5a2172bd`;
+  let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  console.log(apiURL);
+  axios.get(apiURL).then(displayForcast5Day);
+}
+
 function showWeather(response) {
   celsiusTemp = response.data.main.temp;
 
@@ -139,6 +148,8 @@ function showWeather(response) {
     "src",
     `images/icons/${response.data.weather[0].icon}.svg`
   );
+
+  getForcast(response.data.coord);
 }
 
 function searchLocation(position) {
@@ -159,4 +170,3 @@ locationButton.addEventListener("click", getCurrentLocStat);
 let celsiusTemp = null;
 
 searchCity("London");
-displayForcast5Day();
