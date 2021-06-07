@@ -60,27 +60,38 @@ function currentDate() {
 currentDate();
 
 //5 day forcast
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+  return days[day];
+}
+
 function displayForcast5Day(response) {
-  console.log(response.data);
+  let fiveDayForecast = response.data.daily;
   let forcastElement = document.querySelector("#forecast-days");
 
   let forcastHTML = `<div class="row">`;
-  let days = ["Fri", "Sat", "Sun", "Mon", "Tues"];
-  days.forEach(function (day) {
-    forcastHTML =
-      forcastHTML +
-      `
+  fiveDayForecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forcastHTML =
+        forcastHTML +
+        `
 	  <div class="col">
 		<h5 class="day+1">
-              ${day}
+              ${formatDay(forecastDay.dt)}
               <br />
               <span id="day+1">
-				  <img src="images/sunCloudRain.svg" alt="">
-				  5°C
+				  <img src="images/icons/${forecastDay.weather[0].icon}.svg" alt="">
+				  Max ${Math.round(forecastDay.temp.max)} ° 
+          <br>
+          Min ${Math.round(forecastDay.temp.min)} °
 			  </span>
             </h5>
             </div>
     `;
+    }
   });
 
   forcastHTML = forcastHTML + `</div>`;
