@@ -98,6 +98,49 @@ function displayForcast5Day(response) {
   forcastElement.innerHTML = forcastHTML;
 }
 
+// 3 hour forecast
+function formatHour(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  return `${hours}:${minutes}`;
+}
+
+function displayForcast3Hour(response) {
+  let threeHourForecast = response.data.hourly;
+  let forcastHourElement = document.querySelector("#three-hour-forecast");
+
+  let forcast3HTML = `<div class="row">`;
+  threeHourForecast.forEach(function (forecastHour, index) {
+    if (index < 3) {
+      forcast3HTML =
+        forcast3HTML +
+        `
+	  <div class="col">
+		<h5 class="hour">
+              ${formatHours(localTimestamp * 1000)}
+              <br />
+              <span>
+				  <img src="images/icons/${forecastHour.hourly.weather[0].icon}.svg" alt="">
+				  ${Math.round(forecastHour.hourly.temp)} °  
+			  </span>
+            </h5>
+            </div>
+    `;
+    }
+  });
+
+  forcast3HTML = forcast3HTML + `</div>`;
+  forcastHourElement.innerHTML = forcast3HTML;
+}
+
 //convert temp
 
 function convertToCelsius(event) {
@@ -123,7 +166,7 @@ function convertToFahrenheit(event) {
 let fahrenheitLink = document.querySelector("#change-to-F");
 fahrenheitLink.addEventListener("click", convertToFahrenheit);
 
-// Search Engine
+// API
 
 function searchCity(city) {
   let apiKey = `17e48d0a69e4a55c080a86ff5a2172bd`;
@@ -138,6 +181,15 @@ function getForcast(coordinates) {
   console.log(apiURL);
   axios.get(apiURL).then(displayForcast5Day);
 }
+
+function get3HourForcast(coordinates) {
+  console.log(coordinates);
+  let apiKey = `17e48d0a69e4a55c080a86ff5a2172bd`;
+  let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiURL).then(displayForcast3Hour);
+}
+
+// Search Engine
 
 function showWeather(response) {
   celsiusTemp = response.data.main.temp;
