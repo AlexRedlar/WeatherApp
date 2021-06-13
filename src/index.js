@@ -1,19 +1,14 @@
 // Search City
-
 function cityInput(event) {
   event.preventDefault();
   let searchInput = document.querySelector("#input");
   let cityName = document.querySelector("#city");
   cityName.innerHTML = searchInput.value;
-
   searchCity(searchInput.value);
 }
-
 let form = document.querySelector("#form-all");
 form.addEventListener("submit", cityInput);
-
 // Display Date
-
 function currentDate() {
   let days = [
     "Sunday",
@@ -24,7 +19,6 @@ function currentDate() {
     "Friday",
     "Saturday",
   ];
-
   let months = [
     "January",
     "February",
@@ -39,7 +33,6 @@ function currentDate() {
     "November",
     "December",
   ];
-
   let currentDate = new Date();
   let day = days[currentDate.getDay()];
   let month = months[currentDate.getMonth()];
@@ -56,22 +49,17 @@ function currentDate() {
   let currentDateTime = document.querySelector("#date");
   currentDateTime.innerHTML = `${day}, ${dateOfMonth} ${month} ${year} <br /> <small>Last updated: ${hours}:${minutes}</small>`;
 }
-
 currentDate();
-
 //5 day forcast
-
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
   let days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
   return days[day];
 }
-
 function displayForcast5Day(response) {
   let fiveDayForecast = response.data.daily;
   let forcastElement = document.querySelector("#forecast-days");
-
   let forcastHTML = `<div class="row">`;
   fiveDayForecast.forEach(function (forecastDay, index) {
     if (index < 5) {
@@ -93,13 +81,11 @@ function displayForcast5Day(response) {
     `;
     }
   });
-
   forcastHTML = forcastHTML + `</div>`;
   forcastElement.innerHTML = forcastHTML;
 }
-
 // 3 hour forecast
-function formatHour(timestamp) {
+function formatHours(timestamp) {
   let date = new Date(timestamp);
   let hours = date.getHours();
   if (hours < 10) {
@@ -109,14 +95,11 @@ function formatHour(timestamp) {
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
-
   return `${hours}:${minutes}`;
 }
-
 function displayForcast3Hour(response) {
   let threeHourForecast = response.data.hourly;
-  let forcastHourElement = document.querySelector("#three-hour-forecast");
-
+  let forcastHourElement = document.querySelector("#forecast");
   let forcast3HTML = `<div class="row">`;
   threeHourForecast.forEach(function (forecastHour, index) {
     if (index < 3) {
@@ -125,24 +108,21 @@ function displayForcast3Hour(response) {
         `
 	  <div class="col">
 		<h5 class="hour">
-              ${formatHours(localTimestamp * 1000)}
+              ${formatHours(forecastHour.dt * 1000)}
               <br />
               <span>
-				  <img src="images/icons/${forecastHour.hourly.weather[0].icon}.svg" alt="">
-				  ${Math.round(forecastHour.hourly.temp)} °  
+				  <img src="images/icons/${forecastHour.weather[0].icon}.svg" alt="">
+				  ${Math.round(forecastHour.temp)} °  
 			  </span>
             </h5>
             </div>
     `;
     }
   });
-
   forcast3HTML = forcast3HTML + `</div>`;
   forcastHourElement.innerHTML = forcast3HTML;
 }
-
 //convert temp
-
 function convertToCelsius(event) {
   event.preventDefault();
   let temperatureC = document.querySelector("#displayed-temp");
@@ -150,10 +130,8 @@ function convertToCelsius(event) {
   fahrenheitLink.classList.remove("active");
   temperatureC.innerHTML = Math.round(celsiusTemp);
 }
-
 let celsiusLink = document.querySelector("#change-to-C");
 celsiusLink.addEventListener("click", convertToCelsius);
-
 function convertToFahrenheit(event) {
   event.preventDefault();
   let temperatureF = document.querySelector("#displayed-temp");
@@ -162,18 +140,14 @@ function convertToFahrenheit(event) {
   let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
   temperatureF.innerHTML = Math.round(fahrenheitTemp);
 }
-
 let fahrenheitLink = document.querySelector("#change-to-F");
 fahrenheitLink.addEventListener("click", convertToFahrenheit);
-
 // API
-
 function searchCity(city) {
   let apiKey = `17e48d0a69e4a55c080a86ff5a2172bd`;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showWeather);
 }
-
 function getForcast(coordinates) {
   console.log(coordinates);
   let apiKey = `17e48d0a69e4a55c080a86ff5a2172bd`;
@@ -181,19 +155,15 @@ function getForcast(coordinates) {
   console.log(apiURL);
   axios.get(apiURL).then(displayForcast5Day);
 }
-
 function get3HourForcast(coordinates) {
   console.log(coordinates);
   let apiKey = `17e48d0a69e4a55c080a86ff5a2172bd`;
   let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
   axios.get(apiURL).then(displayForcast3Hour);
 }
-
 // Search Engine
-
 function showWeather(response) {
   celsiusTemp = response.data.main.temp;
-
   let searchCity = document.querySelector("#city");
   searchCity.innerHTML = response.data.name;
   let searchTemp = document.querySelector("#displayed-temp");
@@ -211,10 +181,9 @@ function showWeather(response) {
     "src",
     `images/icons/${response.data.weather[0].icon}.svg`
   );
-
   getForcast(response.data.coord);
+  get3HourForcast(response.data.coord);
 }
-
 function searchLocation(position) {
   let apiKey = `17e48d0a69e4a55c080a86ff5a2172bd`;
   let lat = position.coords.latitude;
@@ -226,10 +195,7 @@ function getCurrentLocStat(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
-
 let locationButton = document.querySelector("#location-button");
 locationButton.addEventListener("click", getCurrentLocStat);
-
 let celsiusTemp = null;
-
 searchCity("London");
