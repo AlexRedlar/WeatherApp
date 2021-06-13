@@ -272,7 +272,7 @@ footer {
     margin: 10px 0;
   }
   h1 {
-    font-size: 30px;
+    font-size: 150px;
     padding: 0;
   }
   #lower-hr hr {
@@ -301,7 +301,7 @@ footer {
 #icon {
   display: block;
   margin: 0 auto;
-  height: 300px;
+  height: 250px;
 }
 
 h2 {
@@ -314,4 +314,12 @@ h2 {
 .active {
   background-color: #ff2768;
   cursor: default;
+}
+#items {
+  font-size: 100px;
+  font-family: "Poppins", sans-serif;
+}
+#min {
+  font-weight: 300;
+  font-size: 1rem;
 }

@@ -72,9 +72,9 @@ function displayForcast5Day(response) {
               <br />
               <span id="day+1">
 				  <img src="images/icons/${forecastDay.weather[0].icon}.svg" alt="">
-				  Max ${Math.round(forecastDay.temp.max)} ° 
+				 <strong> Max ${Math.round(forecastDay.temp.max)} ° </strong>
           <br>
-          Min ${Math.round(forecastDay.temp.min)} °
+         <span id="min"> Min ${Math.round(forecastDay.temp.min)} ° </span>
 			  </span>
             </h5>
             </div>
@@ -112,7 +112,7 @@ function displayForcast3Hour(response) {
               <br />
               <span>
 				  <img src="images/icons/${forecastHour.weather[0].icon}.svg" alt="">
-				  ${Math.round(forecastHour.temp)} °  
+				 <strong> ${Math.round(forecastHour.temp)} ° </strong>
 			  </span>
             </h5>
             </div>
