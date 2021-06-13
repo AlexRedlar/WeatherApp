@@ -119,20 +119,13 @@ hr {
   background-color: #fff;
   border-radius: 7px;
 }
-#main-icon {
-  margin: 0;
-  width: 100px;
-}
+
 #mainTemp {
   align-items: top;
   margin: 0;
   padding: 0;
 }
-#icon1,
-#icon2 {
-  margin: 0;
-  width: 70px;
-}
+
 .date-time {
   font-size: 30px;
   text-align: center;
@@ -238,7 +231,6 @@ footer {
 .first-weekdays {
   border-radius: 0;
 }
-
 @media screen and (max-width: 579px) {
   .col-sm {
     margin: 10px 30px 35px 30px;
@@ -287,13 +279,7 @@ footer {
     max-width: 300px;
   }
 }
-@media screen and (max-width: 350px) {
-  .wind-speed,
-  .pressure,
-  .humidity {
-    margin: 10px 30px;
-  }
-}
+
 #search-button-image,
 #location-button-image {
   width: 40px;
